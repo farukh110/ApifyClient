@@ -2,7 +2,7 @@ const express = require("express");
 const { ApifyClient } = require("apify-client");
 const router = express.Router();
 
-const APIFY_TOKEN = process.env.APIFY_API_TOKEN; // Make sure this is set
+const APIFY_TOKEN = process.env.APIFY_API_TOKEN;
 const ACTOR_ID = process.env.ACTOR_ID;
 
 const REELS_ACTOR_ID = "xMc5Ga1oCONPmWJIa";
@@ -51,12 +51,11 @@ router.post("/fetch", async (req, res) => {
     });
 
   } catch (error) {
-    console.error("❌ Error:", error.message);
+    console.error("Error:", error.message);
     return res.status(500).json({ error: "Failed to fetch post" });
   }
 });
 
-// 🎥 New endpoint for fetching reels
 router.post("/fetch-reels", async (req, res) => {
   const { username, resultsLimit } = req.body;
 
@@ -68,7 +67,7 @@ router.post("/fetch-reels", async (req, res) => {
 
   const input = {
     username: Array.isArray(username) ? username : [username],
-    resultsLimit: resultsLimit || 10, // default 10 reels
+    resultsLimit: resultsLimit || 10,
   };
 
   try {
@@ -95,7 +94,7 @@ router.post("/fetch-reels", async (req, res) => {
 
     return res.json(reelsData);
   } catch (error) {
-    console.error("❌ Error fetching reels:", error.message);
+    console.error("Error fetching reels:", error.message);
     return res.status(500).json({ error: "Failed to fetch reels" });
   }
 });

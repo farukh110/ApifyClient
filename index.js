@@ -11,10 +11,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use("/api/instagram", instagramRoutes);
 
-// Export for Vercel
 module.exports = app;
 
-// Run locally only
 if (require.main === module) {
   const PORT = process.env.PORT || 7000;
   app.listen(PORT, () => {
