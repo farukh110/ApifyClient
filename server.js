@@ -6,16 +6,12 @@ require("dotenv").config();
 const instagramRoutes = require("./routes/instagram");
 
 const app = express();
+const PORT = 7000;
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use("/api/instagram", instagramRoutes);
 
-module.exports = app;
-
-if (require.main === module) {
-  const PORT = process.env.PORT || 7000;
-  app.listen(PORT, () => {
-    console.log(`✅ Server running at http://localhost:${PORT}`);
-  });
-}
+app.listen(PORT, () => {
+  console.log(`✅ Server running at http://localhost:${PORT}`);
+});
